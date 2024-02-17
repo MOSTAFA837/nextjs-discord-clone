@@ -7,8 +7,8 @@ const MemberSchema = new Schema(
       enum: ["ADMIN", "MODERATOR", "GUEST"],
       default: "GUEST",
     },
-    profile: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
-    server: { type: Schema.Types.ObjectId, ref: "Server" },
+    profileId: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
+    serverId: { type: Schema.Types.ObjectId, ref: "Server" },
   },
   { timestamps: true }
 );

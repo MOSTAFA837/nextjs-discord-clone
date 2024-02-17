@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 export default async function Setup() {
   const profile = await initialProfile();
 
-  const server = await getServerById(profile.id);
+  const server = await getServerById(profile._id);
 
-  if (server) return redirect(`/servers/${server.id}`);
+  if (server) return redirect(`/servers/${server._id}`);
   return <InitialModal />;
 }

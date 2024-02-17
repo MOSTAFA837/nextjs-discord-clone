@@ -8,8 +8,8 @@ const ChannelSchema = new Schema(
       enum: ["TEXT", "AUDIO", "VIDEO"],
       default: "TEXT",
     },
-    profile: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
-    server: { type: Schema.Types.ObjectId, ref: "Server" },
+    profileId: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
+    serverId: { type: Schema.Types.ObjectId, ref: "Server" },
   },
   { timestamps: true }
 );

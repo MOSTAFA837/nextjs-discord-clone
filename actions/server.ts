@@ -3,6 +3,6 @@
 import { Server } from "@/models/server.model";
 
 export async function getServerById(profileId: string) {
-  const server = await Server.findOne({ "members.profileId": profileId });
+  const server = await Server.findOne({ profileId: profileId });
   return server;
 }

@@ -5,8 +5,7 @@ const ServerSchema = new Schema(
     name: { type: String },
     imageUrl: { type: String },
     inviteCode: { type: String },
-    profile: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
-
+    profileId: { type: Schema.Types.ObjectId, ref: "Profile", required: true },
     members: [{ type: Schema.Types.ObjectId, ref: "Member" }],
     channels: [{ type: Schema.Types.ObjectId, ref: "Channel" }],
   },
