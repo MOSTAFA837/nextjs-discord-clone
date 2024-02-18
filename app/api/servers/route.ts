@@ -3,6 +3,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import { Channel } from "@/models/channel.model";
 import { Member } from "@/models/member.model";
 import { Server } from "@/models/server.model";
+import { channel } from "diagnostics_channel";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 
@@ -23,17 +24,33 @@ export async function POST(req: Request) {
     profileId: profile._id,
   });
 
-  const channel = await Channel.create({
+  let channel = await Channel.findOne({
     name: "general",
     profileId: profile._id,
     serverId: server._id,
   });
 
-  const member = await Member.create({
+  if (!channel) {
+    channel = await Channel.create({
+      name: "general",
+      profileId: profile._id,
+      serverId: server._id,
+    });
+  }
+
+  let member = await Member.findOne({
     profileId: profile._id,
     serverId: server._id,
     role: "ADMIN",
   });
+
+  if (!member) {
+    member = await Member.create({
+      profileId: profile._id,
+      serverId: server._id,
+      role: "ADMIN",
+    });
+  }
 
   server = await Server.findByIdAndUpdate(server._id, {
     $push: {
